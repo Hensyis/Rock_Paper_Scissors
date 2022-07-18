@@ -10,18 +10,20 @@ function getComputerChoice(){
         return "rock";
     }
 }
-const computerSelection = getComputerChoice();
-    console.log(computerSelection);
+
 
 function getPlayerChoice(){
     let playerSelection = prompt("Rock, paper or scissors ? ", "");
     return playerSelection.toLowerCase();
 }
 
-const playerSelection = getPlayerChoice();
-console.log(playerSelection);
+function playRound(){
 
-function playRound(playerSelection, computerSelection){
+    const computerSelection = getComputerChoice();
+    console.log(computerSelection);
+
+    const playerSelection = getPlayerChoice();
+    console.log(playerSelection);
 
     if(playerSelection === computerSelection){
         alert("Personne n'a gagné");
@@ -30,8 +32,27 @@ function playRound(playerSelection, computerSelection){
         === "scissors" && computerSelection === "paper") || (playerSelection === "paper"
         && computerSelection === "rock")){
             alert(`Vous avez gagné car ${playerSelection} gagne ${computerSelection} !`);
+            return true;
         }
     else{
-        alert(`Vous avez gagné car ${computerSelection} gagne ${playerSelection} !`);
+        alert(`Vous avez perdu car ${computerSelection} gagne ${playerSelection} !`);
+        return false;
     }
+}
+
+function game(){
+    let playerWin = 0;
+    let computerWin = 0;
+
+    for(let i = 0; i < 5; i++){
+        let result = playRound();
+        if (result){
+            playerWin =+ 1;
+        }
+        else if(!result){
+            computerWin =+ 1;
+        }
+    }
+
+    alert(`le joueur à eu ${playerWin} et l'ordi à eu ${computerWin}`);
 }
